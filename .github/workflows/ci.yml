@@ -1,0 +1,189 @@
+name: Catholic Compass CI/CD
+
+on:
+  push:
+    branches: [main, dev]
+  pull_request:
+    branches: [main]
+
+env:
+  CARGO_TERM_COLOR: always
+  RUST_BACKTRACE: 1
+
+jobs:
+  # ─────────────────────────────────────────────
+  # 1. BACKEND – build, lint, SCA, SBOM
+  # ─────────────────────────────────────────────
+  backend:
+    name: Backend (Rust)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # Cache Rust build artefacts
+      - name: Cache Cargo registry + build
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            backend/target
+          key: ${{ runner.os }}-cargo-${{ hashFiles('backend/Cargo.lock') }}
+          restore-keys: ${{ runner.os }}-cargo-
+
+      - name: Install Rust stable
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy, rustfmt
+
+      # ── Lint & format ──────────────────────────
+      - name: rustfmt check
+        run: cargo fmt --all -- --check
+
+      - name: Clippy (deny warnings)
+        run: cargo clippy --all-targets --all-features -- -D warnings
+
+      # ── Build ──────────────────────────────────
+      - name: cargo build
+        run: cargo build --release
+
+      # ── SCA: cargo-audit (advisory database) ───
+      - name: Install cargo-audit
+        run: cargo install cargo-audit --locked
+
+      - name: Run cargo-audit
+        run: cargo audit --json > audit-report.json
+        continue-on-error: true   # don't block on advisory-only findings
+
+      - name: Upload audit report
+        uses: actions/upload-artifact@v4
+        with:
+          name: rust-audit-report
+          path: backend/audit-report.json
+
+      # ── SCA: cargo-deny (licenses + advisories) ─
+      - name: Install cargo-deny
+        run: cargo install cargo-deny --locked
+
+      - name: cargo deny check
+        run: cargo deny check
+
+      # ── SBOM: syft (CycloneDX) ─────────────────
+      - name: Install syft
+        uses: anchore/sbom-action/download-syft@v0
+
+      - name: Generate Rust SBOM (CycloneDX JSON)
+        uses: anchore/sbom-action@v0
+        with:
+          path: backend/
+          format: cyclonedx-json
+          output-file: backend-sbom.cyclonedx.json
+          artifact-name: backend-sbom
+
+      # ── Vulnerability scan against SBOM ────────
+      - name: Install grype
+        uses: anchore/scan-action/download-grype@v3
+
+      - name: Grype scan on Rust SBOM
+        run: grype sbom:backend-sbom.cyclonedx.json \
+               --fail-on high \
+               --output json \
+               > grype-rust.json
+        continue-on-error: true
+
+      - name: Upload Grype Rust report
+        uses: actions/upload-artifact@v4
+        with:
+          name: grype-rust-report
+          path: backend/grype-rust.json
+
+  # ─────────────────────────────────────────────
+  # 2. FRONTEND – build, audit, SBOM
+  # ─────────────────────────────────────────────
+  frontend:
+    name: Frontend (JS)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: npm ci
+        run: npm ci
+
+      # ── SCA: npm audit ─────────────────────────
+      - name: npm audit
+        run: npm audit --json > npm-audit.json || true
+
+      - name: Upload npm audit report
+        uses: actions/upload-artifact@v4
+        with:
+          name: npm-audit-report
+          path: frontend/npm-audit.json
+
+      # ── Lint ───────────────────────────────────
+      # Uncomment when ESLint is wired up:
+      # - name: ESLint
+      #   run: npx eslint src/
+
+      # ── Build ──────────────────────────────────
+      - name: Vite production build
+        run: npm run build
+        env:
+          VITE_API_URL: ${{ secrets.VITE_API_URL_STAGING }}
+
+      # ── SBOM: syft (CycloneDX) ─────────────────
+      - name: Generate JS SBOM (CycloneDX JSON)
+        uses: anchore/sbom-action@v0
+        with:
+          path: frontend/
+          format: cyclonedx-json
+          output-file: frontend-sbom.cyclonedx.json
+          artifact-name: frontend-sbom
+
+      # ── Vulnerability scan against SBOM ────────
+      - name: Grype scan on JS SBOM
+        run: grype sbom:frontend-sbom.cyclonedx.json \
+               --fail-on high \
+               --output json \
+               > grype-js.json
+        continue-on-error: true
+
+      - name: Upload Grype JS report
+        uses: actions/upload-artifact@v4
+        with:
+          name: grype-js-report
+          path: frontend/grype-js.json
+
+  # ─────────────────────────────────────────────
+  # 3. DEPLOY – only on main after both jobs pass
+  # ─────────────────────────────────────────────
+  deploy:
+    name: Deploy to Render
+    runs-on: ubuntu-latest
+    needs: [backend, frontend]
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    environment: production
+
+    steps:
+      - name: Trigger Render backend deploy
+        run: |
+          curl -s -X POST "${{ secrets.RENDER_DEPLOY_HOOK_URL }}" \
+            -o /dev/null -w "%{http_code}"
+        # Set RENDER_DEPLOY_HOOK_URL in repo secrets (Render → Settings → Deploy Hook)
+
+      - name: Notify deploy complete
+        run: echo "Render deploy triggered for Catholic Compass backend."

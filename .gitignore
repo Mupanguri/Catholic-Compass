@@ -32,3 +32,11 @@ Thumbs.db
 # Temporary files
 *.tmp
 *.temp
+
+# Security reports
+security-reports/
+*.cyclonedx.json
+grype-*.json
+rust-audit.json
+npm-audit.json
+cargo-deny.txt
