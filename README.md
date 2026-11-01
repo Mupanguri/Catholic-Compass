@@ -475,7 +475,8 @@ The following items are intentionally incomplete or limited during testing:
   form and field-specific validation.
 - The public OSRM service is suitable for development and testing, not a
   guaranteed production routing service.
-- The frontend API base URL is currently configured for local development.
+- Configure the frontend API origin with `VITE_API_URL`. For Vercel, set it
+  to the deployed Render origin (without `/api`), then redeploy.
 - CORS is permissive for local development and should be restricted before
   production deployment.
 - The database seeder workflow still needs a finalized production command.

@@ -1,4 +1,6 @@
-const API_BASE = 'http://127.0.0.1:8080/api';
+const API_ORIGIN = (import.meta.env.VITE_API_URL || 'http://127.0.0.1:8080')
+    .replace(/\/+$/, '');
+const API_BASE = `${API_ORIGIN}/api`;
 
 async function fetchJson(path, opts = {}) {
     const token = localStorage.getItem('admin_token');
