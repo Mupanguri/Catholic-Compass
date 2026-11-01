@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: catholic-compass-api
+    runtime: rust
+    rootDir: backend
+    buildCommand: cargo build --release
+    startCommand: ./target/release/mapme-backend
+    healthCheckPath: /health
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: ADMIN_USERNAME
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false
