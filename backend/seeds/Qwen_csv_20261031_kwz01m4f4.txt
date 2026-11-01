@@ -1,0 +1,26 @@
+name,category,diocese,deanery,town_or_area,lat,lng,notes
+Holy Trinity Cathedral,Parish,Diocese of Mutare,Central,Mutare,-18.9707,32.6709,Mother church of the Diocese; blessed in 1971.
+St. Dominic's Parish,Parish,Diocese of Mutare,Central,Mutare,-18.9750,32.6650,Active urban parish community.
+St. Joseph's Parish,Parish,Diocese of Mutare,Central,Mutare,-18.9650,32.6800,Active urban parish community.
+St. Patrick's Parish,Parish,Diocese of Mutare,Central,Mutare,-18.9800,32.6600,Active urban parish community.
+Moyo Musande Parish,Parish,Diocese of Mutare,Central,Mutare,-18.9700,32.6750,Active parish community.
+St. Columba's Parish,Parish,Diocese of Mutare,East,Honde Valley,-18.8500,32.8500,Rural parish serving the Honde Valley tea estate communities.
+St. Killian's Mission,Mission,Diocese of Mutare,West,Chipinge / Rusape area,-18.6120,32.4140,Carmelite boarding school and mission station.
+Mount Selinda Mission,Mission,Diocese of Mutare,South,Chipinge,-20.4170,32.7170,Historic mission station near Chirinda Forest; established early 20th century.
+St. Augustine's Mission,Mission,Diocese of Mutare,Central,Chikore / Penhalonga,-18.9500,32.6000,Historic mission founded in 1891; premier educational institution.
+St. Benedict's Mission,Mission,Diocese of Mutare,Central,Mutare area,-18.9800,32.6500,Carmelite mission station.
+Mutambara Mission,Mission,Diocese of Mutare,South,Chimanimani,-19.1500,32.9000,Rural mission serving the Chimanimani district.
+Triashil Memorial Shrine,Shrine,Diocese of Mutare,West,Rusape / Mutare,-18.4500,32.1500,First mission established in Mutare; major diocesan pilgrimage site honoring early martyrs and missionaries.
+Stella Maris College,School,Diocese of Mutare,Central,Mutare,-18.9650,32.6650,Premier Catholic secondary girls' school in the diocese.
+St. Charles Lwanga College,School,Diocese of Mutare,Central,Mutare,-18.9700,32.6700,Catholic boys' boarding secondary school; also enrolls day students.
+St. Columba's Primary School,School,Diocese of Mutare,East,Honde Valley,-18.8500,32.8500,Primary and ECD school serving the Honde Valley community.
+St. Killian's Mission School,School,Diocese of Mutare,West,Chipinge / Rusape area,-18.6120,32.4140,Primary and secondary school associated with the mission.
+Mount Selinda Mission School,School,Diocese of Mutare,South,Chipinge,-20.4170,32.7170,Primary and secondary school; historic site of Zimbabwe's first tea planting (1900).
+St. Augustine's Mission School,School,Diocese of Mutare,Central,Chikore / Penhalonga,-18.9500,32.6000,Primary and secondary school associated with the historic mission.
+St. Joseph's Primary School,School,Diocese of Mutare,Central,Mutare,-18.9650,32.6800,Catholic primary school.
+St. Patrick's Primary School,School,Diocese of Mutare,Central,Mutare,-18.9800,32.6600,Catholic primary school.
+Our Lady of Perpetual Help (OLPH) Primary School,School,Diocese of Mutare,Central,Mutare,-18.9750,32.6750,Catholic primary school.
+Mutondwe Primary School,School,Diocese of Mutare,Central,Mutare area,-18.9900,32.6500,Catholic primary school; beneficiary of diocesan water/access programs.
+Mutondwe Secondary School,School,Diocese of Mutare,Central,Mutare area,-18.9900,32.6500,Catholic secondary school.
+Fairfield Children's Home,Orphanage,Diocese of Mutare,Central,Mutare area,-18.9600,32.6800,Supported by diocesan OVC (Orphans and Vulnerable Children) programs.
+St. Columba's ECD Centre,School,Diocese of Mutare,East,Honde Valley,-18.8500,32.8500,Early Childhood Development center attached to St. Columba's Primary.

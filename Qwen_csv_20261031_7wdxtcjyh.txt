@@ -1,0 +1,18 @@
+name,category,diocese,deanery,town_or_area,lat,lng,notes
+Corpus Christi Cathedral,Parish,Diocese of Chinhoyi,Central,Chinhoyi,-17.3667,30.2000,Mother church of the Diocese; founded 1953.
+St Peter's Parish,Parish,Diocese of Chinhoyi,Central,Chinhoyi,-17.3700,30.2100,Active urban parish community.
+St Kizito Parish,Parish,Diocese of Chinhoyi,Karoi,Karoi,-16.8167,29.6833,Named after the Ugandan martyr; active mission parish.
+St Paul's Parish,Parish,Diocese of Chinhoyi,Karoi,Karoi,-16.8200,29.6900,Serves the Karoi district.
+St John the Baptist Parish,Parish,Diocese of Chinhoyi,Kariba,Chirundu,-16.0333,28.9000,Parish serving the Chirundu border community.
+St Edward's Mission,Mission,Diocese of Chinhoyi,Guruve,Guruve,-17.0000,30.5000,Historic rural mission station.
+St Theresa Mission,Mission,Diocese of Chinhoyi,Guruve,Mushongahande,-17.0500,30.5500,Rural mission outstation.
+St Luke Mission,Mission,Diocese of Chinhoyi,Guruve,Chingwaru,-17.1000,30.6000,Rural mission outstation.
+St Rupert Mayer Mission,Mission,Diocese of Chinhoyi,Makonde,Chigaro / Makonde,-17.7681,29.6928,Founded in 1964 by Jesuits; place of serenity and hope.
+Makumbi Mission,Mission,Diocese of Chinhoyi,North,Makumbi,-17.4500,31.4000,Historic Jesuit mission station.
+St Boniface,Outstation,Diocese of Chinhoyi,Central,Chinhoyi area,,,Rural outstation mass center.
+Chinhoyi Rural Training Centre,School,Diocese of Chinhoyi,Central,Chinhoyi,-17.3700,30.2050,Vocational and skills training center.
+St Rupert Mayer's High School,School,Diocese of Chinhoyi,Makonde,Makonde,-17.7681,29.6928,Secondary school associated with the mission; caters to ~1000 learners.
+St Rupert Mayer Primary School,School,Diocese of Chinhoyi,Makonde,Makonde,-17.7681,29.6928,Primary school associated with the mission.
+Karoi Junior Primary School,School,Diocese of Chinhoyi,Karoi,Karoi,-16.8167,29.6833,Catholic primary school.
+St Kizito Primary School,School,Diocese of Chinhoyi,Karoi,Karoi,-16.8167,29.6833,Catholic primary school.
+Makumbi Children's Home,Orphanage,Diocese of Chinhoyi,North,Makumbi,-17.4500,31.4000,Located within Makumbi Mission; cares for orphaned and vulnerable children.

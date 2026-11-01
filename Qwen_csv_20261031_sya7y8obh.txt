@@ -1,0 +1,29 @@
+name,category,diocese,deanery,town_or_area,lat,lng,notes
+St Theresa's Cathedral,Parish,Diocese of Gweru,Gweru,Gweru (CBD),-19.4413,29.8276,Mother church of the Diocese; founded 1900.
+St Michael's Ascot,Parish,Diocese of Gweru,Gweru,Ascot (Gweru),-19.4350,29.8300,Active urban parish community.
+St Paul's Mkoba,Parish,Diocese of Gweru,Mkoba,Mkoba (Gweru),-19.4300,29.8100,Active parish community; established 1964.
+St Peter's,Outstation,Diocese of Gweru,Gweru,Gweru area,,,Outstation mass center.
+St Raphael's,Outstation,Diocese of Gweru,Gweru,Gweru area,,,Outstation mass center.
+St Martin,Outstation,Diocese of Gweru,Gweru,Gweru area,,,Outstation mass center.
+St Luke,Outstation,Diocese of Gweru,Gweru,Gweru area,,,Outstation mass center.
+St Charles,Outstation,Diocese of Gweru,Gweru,Gweru area,,,Outstation mass center.
+Mukaratigwa,Outstation,Diocese of Gweru,Gweru,Mukaratigwa,,,Rural outstation mass center.
+St Joseph Hama Mission,Mission,Diocese of Gweru,Chirumhanzu,Hama / Mvuma,-19.3000,30.4000,Historic rural mission station; established 1913.
+Serima Mission,Mission,Diocese of Gweru,Mvuma,Chatsworth / Mvuma,-19.3800,30.5100,Famous for African Christian liturgy and woodcarving; founded 1948.
+Driefontein Mission,Mission,Diocese of Gweru,Mvuma,Mvuma,-19.4134,30.7156,Historic mission station; established 1906.
+Holy Cross Mission,Mission,Diocese of Gweru,Chirumhanzu,Chirumhanzu,-19.5636,30.5788,Rural mission with associated hospital; established 1914.
+Mwoyomusande Mission,Mission,Diocese of Gweru,Chirumhanzu,Chirumhanzu,-19.3200,30.3500,Rural mission station serving the local community.
+Muonde Mission,Mission,Diocese of Gweru,Chirumhanzu,Chirumhanzu,-19.3300,30.3600,Rural mission station with clinic facilities.
+Mary Ward High School,School,Diocese of Gweru,Kwekwe,Kwekwe,-18.9252,29.8575,Catholic secondary girls' school run by the Congregation of Jesus.
+Mary Ward Primary School,School,Diocese of Gweru,Kwekwe,Kwekwe,-18.9250,29.8570,Catholic primary school.
+Shungu High School,School,Diocese of Gweru,Kwekwe,Kwekwe,-18.9500,29.8000,Catholic secondary school located approx. 16km from Kwekwe.
+Serima High School,School,Diocese of Gweru,Mvuma,Chatsworth,-19.3850,30.5150,Secondary school associated with Serima Mission.
+Serima Mission School,School,Diocese of Gweru,Mvuma,Chatsworth,-19.3800,30.5100,Primary school associated with Serima Mission.
+Chaka Primary School,School,Diocese of Gweru,Mvuma,Mvuma,-19.2790,30.5280,Catholic primary school in the Mvuma area.
+Gonawapotera High School,School,Diocese of Gweru,Chirumhanzu,Chirumhanzu,-19.3100,30.3400,Catholic secondary school.
+Senga Primary School,School,Diocese of Gweru,Gweru,Gweru,-19.4200,29.8400,Catholic primary school.
+Mkoba 4 Primary School,School,Diocese of Gweru,Mkoba,Mkoba (Gweru),-19.4300,29.8100,Catholic primary school.
+St Paul's Mkoba Primary School,School,Diocese of Gweru,Mkoba,Mkoba (Gweru),-19.4300,29.8100,Primary school associated with St Paul's parish.
+Chinotumenyere Secondary School,School,Diocese of Gweru,Gweru,Gweru area,-19.4400,29.8200,Catholic secondary school.
+Mary Ward Children's Home,Orphanage,Diocese of Gweru,Kwekwe,Amaveni / Kwekwe,-18.9200,29.8600,Children's home organized into family units; supported by Mary Ward Sisters.
+Mary Help of Christians Shrine,Shrine,Diocese of Gweru,Gweru,Gweru,-19.4400,29.8250,Diocesan shrine dedicated to prayer and adoration.

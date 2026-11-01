@@ -1,0 +1,51 @@
+name,category,diocese,deanery,town_or_area,lat,lng,notes
+St. Mary's Cathedral Basilica,Parish,Archdiocese of Bulawayo,Central,Bulawayo (CBD),-20.1550,28.5779,Mother church and Minor Basilica of the Archdiocese.
+St Anthony's Parish,Parish,Archdiocese of Bulawayo,Central,Barham Green (Bulawayo),-20.1400,28.5900,Active urban parish.
+St. Christopher Parish,Parish,Archdiocese of Bulawayo,Central,Bulawayo,-20.1500,28.5800,Active parish community.
+Holy Trinity Parish,Parish,Archdiocese of Bulawayo,Central,Luveve (Bulawayo),-20.1200,28.6000,Serves the Luveve/Cowdrey Park area.
+St Martin de Porres Parish,Parish,Archdiocese of Bulawayo,South West,Emganwini (Bulawayo),-20.1800,28.5500,Active parish in southwestern suburbs.
+Our Lady Queen of Peace,Parish,Archdiocese of Bulawayo,Central,Entumbane (Bulawayo),-20.1100,28.6100,Active parish community.
+Christ the King Parish,Parish,Archdiocese of Bulawayo,Central,Hillside (Bulawayo),-20.1300,28.5950,Active parish community.
+Body and Blood of Christ Parish,Parish,Archdiocese of Bulawayo,Central,Kenilworth (Bulawayo),-20.1600,28.5700,Active parish community.
+Khami Community,Parish,Archdiocese of Bulawayo,Central,Khami (Bulawayo),-20.0800,28.5200,Parish serving the Khami area.
+Our Lady of Lourdes,Parish,Archdiocese of Bulawayo,Central,Ascot / Khumalo (Bulawayo),-20.1700,28.5600,Active parish community.
+Uganda Martyrs Parish,Parish,Archdiocese of Bulawayo,North West,Luveve (Bulawayo),-20.1250,28.6050,Active parish community.
+St Adolph Ludigo Parish,Parish,Archdiocese of Bulawayo,Central,Magwegwe (Bulawayo),-20.1350,28.5850,Active parish community.
+Divine Mercy Parish,Parish,Archdiocese of Bulawayo,Central,Mahatshula (Bulawayo),-20.1450,28.5750,Active parish community.
+St Peter & Paul Parish,Parish,Archdiocese of Bulawayo,Central,Mpopoma (Bulawayo),-20.1550,28.5650,Active parish community.
+St Patrick's Parish,Parish,Archdiocese of Bulawayo,Central,Mzilikazi (Bulawayo),-20.1400,28.5900,Active parish community.
+St. Pius X Parish,Parish,Archdiocese of Bulawayo,Central,Njube (Bulawayo),-20.1650,28.5550,Active parish community.
+Holy Family Parish,Parish,Archdiocese of Bulawayo,Central,Nketa 7 (Bulawayo),-20.1750,28.5450,Active parish community.
+St. John the Baptist Parish,Parish,Archdiocese of Bulawayo,Central,Nkulumane (Bulawayo),-20.1850,28.5350,Active parish community.
+Holy Spirit Parish,Parish,Archdiocese of Bulawayo,Central,Nkulumane (Bulawayo),-20.1800,28.5400,Active parish community.
+St Thomas Parish,Parish,Archdiocese of Bulawayo,Central,North Trenance (Bulawayo),-20.1600,28.5800,Active parish community.
+St. Bernard's Mission,Parish,Archdiocese of Bulawayo,Central,Pumula-Hyde Park (Bulawayo),-20.1900,28.5300,Mission parish with minor seminary.
+Our Lady of Fatima Parish,Parish,Archdiocese of Bulawayo,Central,Pumula South (Bulawayo),-20.1950,28.5250,Active parish community.
+St Andrew's Parish,Parish,Archdiocese of Bulawayo,Central,Queens Park (Bulawayo),-20.1500,28.5900,Active parish community.
+Holy Cross Parish,Parish,Archdiocese of Bulawayo,Central,Tshabalala (Bulawayo),-20.1700,28.5500,Active parish community.
+St Bernadette Parish,Parish,Archdiocese of Bulawayo,Central,Waterford / Manningdale (Bulawayo),-20.1800,28.5600,Active parish community.
+St Anne's Parish / Mission,Parish,Archdiocese of Bulawayo,Central,Brunapeg (Bulawayo),-20.2000,28.5100,Mission parish with associated hospital.
+Bushstick Mission,Mission,Archdiocese of Bulawayo,Central,Bushstick (Bulawayo),-20.2100,28.5000,Rural mission station.
+Ekuthuleni Mission,Mission,Archdiocese of Bulawayo,Empandeni,Dlamini / Tsholotsho,-19.9500,28.1500,Rural mission in Tsholotsho district.
+Ekusileni Mission,Mission,Archdiocese of Bulawayo,Empandeni,Filabusi,-20.7239,29.3603,Rural mission with primary and secondary schools.
+Sacred Heart Mission,Mission,Archdiocese of Bulawayo,Empandeni,Embakwe / Plumtree,-20.5500,28.1000,Historic mission station near Plumtree.
+St Francis Xavier Mission (Empandeni),Mission,Archdiocese of Bulawayo,Empandeni,Empandeni / Plumtree,-20.6500,28.0500,First Catholic mission established in Zimbabwe (1887).
+St John Vianney Mission,Mission,Archdiocese of Bulawayo,Empandeni,Esigodini,-20.3500,28.3500,Rural mission station.
+Fort Rixon Mission,Mission,Archdiocese of Bulawayo,Empandeni,Fort Rixon,-20.2500,28.4000,Rural mission station.
+Regina Mundi Mission,Mission,Archdiocese of Bulawayo,Empandeni,Gwaai,-20.3000,28.2000,Rural mission station.
+Dominican Primary School,School,Archdiocese of Bulawayo,Central,Bulawayo,-20.1540,28.5770,Primary school run by Dominican Sisters.
+Dominican Convent High School,School,Archdiocese of Bulawayo,Central,Bulawayo,-20.1542,28.5773,Premier Catholic secondary girls' school (founded 1895).
+St. Thomas Aquinas Primary School,School,Archdiocese of Bulawayo,Central,Ascot (Bulawayo),-20.1700,28.5600,Primary school.
+St Patrick's Primary Day School,School,Archdiocese of Bulawayo,Central,Bulawayo,-20.1400,28.5900,Primary school.
+St. Pius Nursery School (ECD),School,Archdiocese of Bulawayo,Central,Njube (Bulawayo),-20.1650,28.5550,Early Childhood Development center.
+St. Bernard's Primary Day School,School,Archdiocese of Bulawayo,Central,Pumula (Bulawayo),-20.1900,28.5300,Primary school.
+St. Bernard's Secondary Day School,School,Archdiocese of Bulawayo,Central,Pumula (Bulawayo),-20.1900,28.5300,Secondary school.
+Ekusileni Primary School,School,Archdiocese of Bulawayo,Empandeni,Filabusi,-20.7239,29.3603,Primary school at Ekusileni Mission.
+Ekusileni Secondary Boarding School,School,Archdiocese of Bulawayo,Empandeni,Filabusi,-20.7239,29.3603,Secondary boarding school.
+Sacred Heart Primary/High School,School,Archdiocese of Bulawayo,Empandeni,Embakwe / Plumtree,-20.5500,28.1000,Primary and secondary school at Sacred Heart Mission.
+Empandeni Girls Secondary Boarding School,School,Archdiocese of Bulawayo,Empandeni,Plumtree,-20.6500,28.0500,Secondary boarding school at Empandeni Mission.
+Empandeni College,School,Archdiocese of Bulawayo,Empandeni,Plumtree,-20.6500,28.0500,Teacher training / college institution.
+Magama Secondary School,School,Archdiocese of Bulawayo,Central,Bulawayo area,-20.1500,28.5800,Secondary school.
+Isaiah's Homes of Love (Umuzi Wothando),Orphanage,Archdiocese of Bulawayo,Central,Suburbs (Bulawayo),-20.1600,28.5900,Children's home for abandoned babies/orphans; supported by Caritas/Archdiocese.
+CPS Sacred Heart Home,Orphanage,Archdiocese of Bulawayo,Central,Bushstick Mission (Bulawayo),-20.2100,28.5000,Children's home run by Congregation of the Presentation of the Blessed Virgin Mary (CPS).
+Empandeni Marian Shrine,Shrine,Archdiocese of Bulawayo,Empandeni,Plumtree,-20.6500,28.0500,Major diocesan pilgrimage site; attracts thousands annually for the August Marian pilgrimage.

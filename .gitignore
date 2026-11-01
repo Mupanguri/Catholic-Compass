@@ -1,0 +1,34 @@
+# Environment and secrets
+.env
+.env.*
+!.env.example
+backend/.env
+
+# Rust build artifacts
+target/
+**/target/
+
+# Node.js dependencies and build output
+node_modules/
+**/node_modules/
+dist/
+**/dist/
+
+# Logs and local runtime files
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Editor and operating-system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Temporary files
+*.tmp
+*.temp

@@ -1,0 +1,27 @@
+name,category,diocese,deanery,town_or_area,lat,lng,notes
+St Augustine's Cathedral,Parish,Diocese of Masvingo,Central,Masvingo,-20.0637,30.8277,Mother church of the Diocese.
+St Don Bosco Parish,Parish,Diocese of Masvingo,Central,Masvingo,-20.0600,30.8300,Active urban parish community.
+St Nicholas Parish,Parish,Diocese of Masvingo,Central,Mukaro,-20.1000,30.9000,Active parish community.
+All Saints Rutenga Mission,Mission,Diocese of Masvingo,Chiredzi,Rutenga,-21.0500,31.2500,Rural mission serving the Chiredzi district.
+St Anthony's Mission,Mission,Diocese of Masvingo,Central,Masvingo area,-20.1500,30.9000,Historic mission station.
+St Michael Mpandawana Mission,Mission,Diocese of Masvingo,Mwenezi,Mpandawana,-21.2000,30.9500,Rural mission serving the Mwenezi district.
+Gokomere Mission,Mission,Diocese of Masvingo,Gutu,Gokomere,-19.9469,30.7759,Historic Jesuit mission station; major diocesan center.
+Silveira Mission,Mission,Diocese of Masvingo,Gutu,Nyika,-20.0226,31.6872,Historic mission station named after Fr. Goncalo da Silveira.
+Berejena Mission,Mission,Diocese of Masvingo,Chivi,Berejena,-20.3000,30.5000,Rural mission station.
+Bondolfi Mission,Mission,Diocese of Masvingo,Chivi,Bondolfi,-20.2899,30.7442,Historic mission station with educational institutions.
+Matibi Mission,Mission,Diocese of Masvingo,Chiredzi,Matibi,-21.1000,31.3000,Rural mission with associated hospital.
+St Patrick's Gokomere,Outstation,Diocese of Masvingo,Gutu,Gokomere,-19.9469,30.7759,Outstation mass center under Gokomere Mission.
+Nyika,Outstation,Diocese of Masvingo,Gutu,Nyika,-20.0200,31.6800,Outstation mass center under Silveira Mission.
+Mbirashava,Outstation,Diocese of Masvingo,Gutu,Mbirashava,,,Outstation mass center under Silveira Mission.
+Chikuku,Outstation,Diocese of Masvingo,Gutu,Chikuku,,,Outstation mass center under Silveira Mission.
+Gokomere High School,School,Diocese of Masvingo,Gutu,Gokomere,-19.9469,30.7759,Premier Catholic mission secondary school.
+Gokomere Central Primary School,School,Diocese of Masvingo,Gutu,Gokomere,-19.9469,30.7759,Primary school associated with Gokomere Mission.
+Bondolfi Teachers' College,School,Diocese of Masvingo,Chivi,Bondolfi,-20.2899,30.7442,The only Catholic teachers' college in Zimbabwe.
+Bondolfi Secondary School,School,Diocese of Masvingo,Chivi,Bondolfi,-20.2899,30.7442,Secondary school associated with Bondolfi Mission.
+Bondolfi Central Primary School,School,Diocese of Masvingo,Chivi,Bondolfi,-20.2899,30.7442,Primary school associated with Bondolfi Mission.
+Mukaro High School,School,Diocese of Masvingo,Gutu,Mukaro,-20.1000,30.9000,Catholic girls' boarding secondary school.
+St Anthony's Central Primary School,School,Diocese of Masvingo,Central,Masvingo,-20.0650,30.8300,Catholic day school situated south-east of Masvingo city.
+Berejena CPS,School,Diocese of Masvingo,Chivi,Berejena,-20.3000,30.5000,Primary school associated with Berejena Mission.
+Bondolfi CPS,School,Diocese of Masvingo,Chivi,Bondolfi,-20.2899,30.7442,Primary school associated with Bondolfi Mission.
+Chatagwi CPS,School,Diocese of Masvingo,Chivi,Chatagwi,-20.3500,30.7000,Primary school in the Bondolfi area.
+Makura CPS,School,Diocese of Masvingo,Central,Makura,-20.1200,30.8500,Primary school in the Masvingo area.

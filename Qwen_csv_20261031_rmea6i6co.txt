@@ -1,0 +1,57 @@
+name,category,diocese,deanery,town_or_area,lat,lng,notes
+Cathedral of the Sacred Heart,Parish,Archdiocese of Harare,Inner City,Harare (CBD),-17.8292,31.0522,Mother church of the Archdiocese; founded 1891.
+St Gerard's Catholic Church,Parish,Archdiocese of Harare,Inner City,Borrowdale / Greystone Park,-17.7736,31.0989,Entrusted to Redemptorists; founded 1960.
+Holy Name Parish,Parish,Archdiocese of Harare,Inner City,Mabelreign / Cotswold Hills,-17.7833,31.0167,Founded 1957; formerly Jesuit.
+St Canisius Parish,Parish,Archdiocese of Harare,Inner City,Marlborough,-17.7667,31.0833,Separated from Holy Name Mabelreign in 2013.
+Our Lady of the Wayside,Parish,Archdiocese of Harare,Inner City,Mt Pleasant,-17.7583,31.0500,Entrusted to Jesuits; founded 1959.
+Assumption of Our Lady,Parish,Archdiocese of Harare,Inner City,Rhodesville / Greendale,-17.8167,31.1000,Diocesan Parish; founded 1953.
+St Augustine's Hatcliffe,Parish,Archdiocese of Harare,Inner City,Hatcliffe,-17.7333,31.0333,Separated from St Gerard's Borrowdale in 2018.
+St Stephen's Dzivarasekwa,Parish,Archdiocese of Harare,North West Of City,Dzivarasekwa,-17.7833,30.9833,Youngest parish; became fully fledged in 2019.
+All Saints Kambuzuma,Parish,Archdiocese of Harare,North West Of City,Kambuzuma,-17.8167,30.9833,Entrusted to Salesians of Don Bosco.
+Holy Trinity Kuwadzana,Parish,Archdiocese of Harare,North West Of City,Kuwadzana,-17.7667,30.9500,Entrusted to Spiritans.
+Holy Cross Budiriro,Parish,Archdiocese of Harare,South West Of City,Budiriro,-17.8833,30.9667,Largest parish in the Archdiocese; entrusted to Verbites.
+St Patrick's Glen Norah,Parish,Archdiocese of Harare,South West Of City,Glen Norah,-17.8667,30.9833,Entrusted to Franciscans.
+St Ignatius Chishawasha,Parish,Archdiocese of Harare,Outer City,Chishawasha,-17.8500,31.2000,Entrusted to Jesuits; founded 1892.
+St Charles Lwanga Ruwa,Parish,Archdiocese of Harare,Outer City,Ruwa,-17.8833,31.2333,Entrusted to Claretians.
+St Francis Xavier Braeside,Parish,Archdiocese of Harare,South East of City,Braeside,-17.8333,31.0833,Founded 1958.
+St Peter's Mbare,Parish,Archdiocese of Harare,South East of City,Mbare,-17.8500,31.0333,Entrusted to Jesuits; founded 1910.
+St Joseph's Hatfield,Parish,Archdiocese of Harare,South East of City,Hatfield,-17.8500,31.0667,Entrusted to Carmelites.
+St Monica Seke Urban,Parish,Archdiocese of Harare,Chitungwiza,Seke,-17.9833,31.0667,Founded 1983.
+Holy Cross Murewa,Parish,Archdiocese of Harare,East,Murewa,-17.5333,31.8000,Diocesan Parish; founded 1962.
+St Paul's Musami,Parish,Archdiocese of Harare,East,Musami,-17.6167,31.5500,Entrusted to Jesuits; founded 1923.
+All Souls Mutoko,Parish,Archdiocese of Harare,East,Mutoko,-17.3969,32.2267,Diocesan Parish; founded 1930.
+Holy Family Bindura,Parish,Archdiocese of Harare,North,Bindura,-17.3000,31.3333,Diocesan Parish.
+The Visitation BVM Makumbi,Parish,Archdiocese of Harare,North,Makumbi,-17.4500,31.4000,Entrusted to Jesuits.
+St Francis Chegutu,Parish,Archdiocese of Harare,West,Chegutu,-18.1333,30.1333,Diocesan Parish.
+St James the Greater Kadoma,Parish,Archdiocese of Harare,West,Kadoma,-18.3333,29.9167,Founded 1914.
+Our Lady of the Rosary Marondera,Parish,Archdiocese of Harare,Marondera,Marondera,-18.1833,31.5500,Diocesan Parish.
+Mt St Mary's Wedza,Parish,Archdiocese of Harare,Marondera,Wedza,-18.2167,31.7167,Founded 1951.
+Our Lady of Lourdes Chivhu,Parish,Archdiocese of Harare,Chivhu,Chivhu,-18.3167,31.2333,Founded 1940.
+St Francis of Assisi Nharira,Parish,Archdiocese of Harare,Chivhu,Nharira,-18.4500,31.1000,Entrusted to Franciscans.
+St John of Cologne Avondale,Outstation,Archdiocese of Harare,Inner City,Avondale,-17.7667,31.0333,Sub-parish of Our Lady of the Wayside.
+St John Msasa,Outstation,Archdiocese of Harare,Inner City,Msasa,-17.8167,31.1167,Sub-parish of Assumption of Our Lady.
+Inkomo,Outstation,Archdiocese of Harare,Inner City,Mabelreign area,,,Parent parish: Holy Name Mabelreign.
+Glenara Estate,Outstation,Archdiocese of Harare,Inner City,Marlborough area,,,Parent parish: St Canisius Marlborough.
+Stapleford,Outstation,Archdiocese of Harare,North West Of City,Dzivarasekwa area,,,Parent parish: St Stephen's Dzivarasekwa.
+Mother Theresa Centre (CABS),Outstation,Archdiocese of Harare,South West Of City,Budiriro,,,Parent parish: Holy Cross Budiriro.
+St Patrick's Epworth,Outstation,Archdiocese of Harare,South East of City,Epworth,-17.8833,31.1500,Parent parish: St Joseph's Hatfield.
+Borere,Outstation,Archdiocese of Harare,East,Murewa,,,Parent parish: Holy Cross Murewa.
+Chizanga,Outstation,Archdiocese of Harare,East,Musami,,,Parent parish: St Paul's Musami.
+Chimoyo,Outstation,Archdiocese of Harare,East,Mutoko,,,Parent parish: All Souls Mutoko.
+Kristo Mambo Chipadze,Outstation,Archdiocese of Harare,North,Bindura,,,Parent parish: Holy Family Bindura.
+St Martin de Porres Martindale,Outstation,Archdiocese of Harare,West,Martindale / Chegutu,,,Parent parish: St Francis Chegutu.
+St Charles Lwanga Ngezi,Outstation,Archdiocese of Harare,West,Ngezi,,,Sub-parish of St James the Greater Kadoma.
+Chishawasha Primary School,School,Archdiocese of Harare,Outer City,Chishawasha,-17.8500,31.2000,Primary school run by Jesuits; founded 1892.
+St Ignatius College,School,Archdiocese of Harare,Outer City,Chishawasha,-17.8500,31.2000,Secondary school run by Jesuits.
+Kutama College (St Francis Xavier),School,Archdiocese of Harare,West,Norton / Zvimba,-17.8050,30.3865,Secondary boys' school.
+Mt St Mary's Mission School,School,Archdiocese of Harare,Marondera,Wedza,-18.2167,31.7167,Primary and Secondary school.
+St Paul's Musami Secondary School,School,Archdiocese of Harare,East,Musami,-17.6167,31.5500,Secondary school run by Jesuits.
+All Souls High School,School,Archdiocese of Harare,East,Mutoko,-17.3969,32.2267,Secondary school.
+Holy Rosary Secondary School,School,Archdiocese of Harare,Inner City,Harare,-17.8292,31.0522,Secondary school.
+St Peter's Kubatana Secondary School,School,Archdiocese of Harare,South East of City,Harare,-17.8500,31.1000,Secondary school.
+Monte Casino Secondary School,School,Archdiocese of Harare,Inner City,Harare,-17.8167,31.0333,Secondary school.
+Emerald Hill School,School,Archdiocese of Harare,Inner City,Emerald Hill (Harare),-17.7758,31.0281,Primary school and home for deaf children.
+Matthew Rusike Children's Home,Orphanage,Archdiocese of Harare,South East of City,Epworth / Hatfield (Harare),-17.8690,31.1320,Affiliated with Archdiocese of Harare Catholic Children's Homes.
+Shungu Dzevana Trust Children's Home,Orphanage,Archdiocese of Harare,Inner City,Harare,-17.8333,31.0500,Affiliated member of Archdiocese of Harare Catholic Children's Homes.
+Emerald Hill Children's Home,Orphanage,Archdiocese of Harare,Inner City,Emerald Hill (Harare),-17.7758,31.0281,Associated with Our Lady of the Wayside parish.
+Mutemwa Leprosy Catholic & Care Centre,Shrine,Archdiocese of Harare,East,Mutoko,-17.4019,32.2769,Pilgrimage site; former leprosy treatment centre where Blessed John Bradburne worked and was martyred.

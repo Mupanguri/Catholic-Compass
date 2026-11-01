@@ -1,0 +1,23 @@
+name,category,diocese,deanery,town_or_area,lat,lng,notes
+St. Ignatius Cathedral,Parish,Diocese of Hwange,Central,Hwange,-18.3553,26.4928,Mother church of the Diocese; Jesuit-administered.
+St. Thomas More Catholic Church,Parish,Diocese of Hwange,Central,Hwange,-18.3500,26.4900,Active urban parish community in Hwange town.
+All Souls Mission,Mission,Diocese of Hwange,North West,Binga,-17.6500,26.8500,Historic mission serving the Binga district and Tonga communities.
+Holy Cross Lusulu,Mission,Diocese of Hwange,South East,Lusulu,-18.5523,28.0692,Rural mission station.
+St. Josephine Bakhita Mission,Mission,Diocese of Hwange,South West,Victoria Falls (Mukhosana),-17.9300,25.8300,Mission serving the Victoria Falls tourism hub and local townships.
+St. John's Mission,Mission,Diocese of Hwange,Central,Makwa,-18.4000,26.6000,Rural mission overseeing multiple outcentres in the Hwange district.
+St. Faustina Mission,Mission,Diocese of Hwange,South West,Matetsi,-18.0833,25.8667,Newly established mission (also known as Mary Queen of the Assumption).
+Fatima Mission,Mission,Diocese of Hwange,North,Dete,-18.1500,27.3000,Rural mission serving the Dete area.
+St. Charles Lwanga Mission,Mission,Diocese of Hwange,North,Jotsholo,-18.7500,27.2000,Rural mission station.
+St. Mary's Mission,Mission,Diocese of Hwange,North,Kamativi,-18.4500,27.0500,Historic mission serving the Kamativi mining area.
+Makwa Outcentres,Outstation,Diocese of Hwange,Central,Makwa area,,,"24+ rural outcentres (zviteshi) administered under St. John's Mission."
+Lusulu Outcentres,Outstation,Diocese of Hwange,South East,Lusulu area,,,Rural outstation mass centers under Holy Cross Lusulu.
+St. Ignatius Cathedral Pre-Primary,School,Diocese of Hwange,Central,Hwange,-18.3553,26.4928,Early Childhood Development (ECD) center attached to the Cathedral.
+St. Ignatius Primary School,School,Diocese of Hwange,Central,Hwange,-18.3524,26.4919,Primary school associated with the Cathedral.
+St. Ignatius Cathedral Soonga Road Primary,School,Diocese of Hwange,Central,Hwange,-18.3550,26.4930,Additional primary school facility in Hwange.
+St. Josephine Bakhita Primary School,School,Diocese of Hwange,South West,Victoria Falls,-17.9300,25.8300,Primary school serving the Mukhosana township community.
+All Souls Primary School,School,Diocese of Hwange,North West,Binga,-17.6500,26.8500,Primary school associated with All Souls Mission.
+Holy Cross Lusulu Primary School,School,Diocese of Hwange,South East,Lusulu,-18.5523,28.0692,Primary school associated with the mission.
+St. John's Mission Primary School,School,Diocese of Hwange,Central,Makwa,-18.4000,26.6000,Primary school serving the Makwa rural community.
+Fatima Primary School,School,Diocese of Hwange,North,Dete,-18.1500,27.3000,Primary school associated with Fatima Mission.
+St. Charles Lwanga Primary School,School,Diocese of Hwange,North,Jotsholo,-18.7500,27.2000,Primary school associated with the mission.
+St. Mary's Primary School,School,Diocese of Hwange,North,Kamativi,-18.4500,27.0500,Primary school associated with the mission.

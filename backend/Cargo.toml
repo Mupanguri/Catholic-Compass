@@ -1,0 +1,29 @@
+[package]
+name = "mapme-backend"
+version = "0.1.0"
+edition = "2021"
+
+default-run = "mapme-backend"
+
+[dependencies]
+axum = { version = "0.7", features = ["multipart"] }
+tokio = { version = "1", features = ["full"] }
+tower = { version = "0.4", features = ["util"] }
+tower-http = { version = "0.5", features = ["cors", "fs", "trace"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+sqlx = { version = "0.7", features = ["runtime-tokio-native-tls", "postgres", "uuid", "chrono", "json"] }
+uuid = { version = "1", features = ["v4", "serde"] }
+chrono = { version = "0.4", features = ["serde"] }
+dotenvy = "0.15"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+jsonwebtoken = "9"
+axum-extra = { version = "0.9", features = ["typed-header"] }
+base64 = "0.22"
+image = "0.25"
+validator = { version = "0.18", features = ["derive"] }
+
+[[bin]]
+name = "seeder"
+path = "seeder/main.rs"

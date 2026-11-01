@@ -1,0 +1,19 @@
+name,category,diocese,deanery,town_or_area,lat,lng,notes
+St Paul's Parish,Parish,Diocese of Gokwe,Central,Gokwe,-18.2200,28.9400,Active urban parish; hub for diocesan administration and minor seminary.
+Uganda Martyrs Parish,Parish,Diocese of Gokwe,Central,Gokwe,-18.2150,28.9350,Active parish community serving Gokwe town.
+St Claret Chiutsi,Mission,Diocese of Gokwe,North,Chiutsi / Chigoronga,-18.1500,28.9000,Rural mission station established to serve the northern district.
+Nemangwe Mission,Mission,Diocese of Gokwe,South,Nemangwe,-17.9500,28.7600,Rural mission area serving the southern chiefdoms.
+Chitombo Mission,Mission,Diocese of Gokwe,South,Chitombo,-18.2000,28.9300,Rural mission station.
+Sengwa Mission,Mission,Diocese of Gokwe,West,Sengwa,-18.3000,28.6000,Rural mission station serving the Sengwa river area.
+St Pius Chehanga,Mission,Diocese of Gokwe,North,Chehanga,-18.1000,28.8500,Rural mission outstation.
+St John Mission,Mission,Diocese of Gokwe,North,Gokwe area,-18.2000,28.9000,Rural mission station.
+Chehanga Outcentres,Outstation,Diocese of Gokwe,North,Chehanga area,,,"Rural outstation (zviteshi) mass centers under St Pius Chehanga."
+Chitombo Outcentres,Outstation,Diocese of Gokwe,South,Chitombo area,,,"Rural outstation (zviteshi) mass centers under Chitombo Mission."
+St Paul's Gokwe Primary School,School,Diocese of Gokwe,Central,Gokwe,-18.2200,28.9400,Distinguished Catholic primary institution in Gokwe South District.
+St Paul's Gokwe High School,School,Diocese of Gokwe,Central,Gokwe,-18.2200,28.9400,Catholic secondary school associated with the parish.
+Chitombo High School,School,Diocese of Gokwe,South,Chitombo,-18.2000,28.9300,Catholic secondary school serving the southern district.
+Chegama Primary School,School,Diocese of Gokwe,Central,Gokwe,-18.2100,28.9300,Catholic primary school.
+St Claret Chiutsi Primary School,School,Diocese of Gokwe,North,Chiutsi,-18.1500,28.9000,Primary school associated with St Claret Mission.
+St John Pre-School,School,Diocese of Gokwe,North,Gokwe area,-18.2000,28.9000,Early Childhood Development (ECD) center.
+Amai Vorugare Shrine,Shrine,Diocese of Gokwe,South,Nemangwe,-17.9500,28.7600,Major diocesan pilgrimage site; hub of pastoral and spiritual life located approx. 20km from Gokwe town.
+Diocesan OVC / Child Protection Programs,Orphanage,Diocese of Gokwe,Central,Gokwe,-18.2200,28.9400,Diocese actively runs child protection and Orphans/Vulnerable Children (OVC) support frameworks, often administered through local parish/mission outreach rather than a single standalone facility.
