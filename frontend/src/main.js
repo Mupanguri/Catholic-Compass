@@ -711,6 +711,12 @@ function setupEventListeners() {
         handleSearch(e.target.value);
     });
 
+    const mobileMapToggle = document.querySelector('.mobile-map-toggle');
+    mobileMapToggle?.addEventListener('click', () => {
+        const isOpen = sidebar.classList.toggle('mobile-open');
+        mobileMapToggle.setAttribute('aria-expanded', String(isOpen));
+    });
+
     categoryPills.forEach((pill) => {
         pill.addEventListener('click', () => {
             categoryPills.forEach(p => p.classList.remove('active'));
@@ -826,8 +832,13 @@ app.innerHTML = `
         </div>
     </section>
     <div class="map-view" hidden>
+        <div class="mobile-map-toolbar">
+            <button type="button" class="mobile-map-toggle" aria-expanded="false" aria-controls="map-sidebar">
+                Search and filters
+            </button>
+        </div>
         <div class="layout">
-            <aside class="sidebar">
+            <aside class="sidebar" id="map-sidebar">
                 <div class="sidebar-header">
                     <h1>Catholic Compass</h1>
                 </div>
