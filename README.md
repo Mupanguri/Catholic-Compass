@@ -278,8 +278,10 @@ The detail panel provides two navigation choices:
   - Opens an external Google Maps route.
   - Falls back to a destination search if location access is denied.
 
-Browser geolocation normally requires a secure context or localhost and user
-permission. In-map routing currently supports driving only.
+Browser geolocation requires a secure context (HTTPS, or localhost during
+development) and user permission. If the site is opened over plain HTTP, the
+browser will block location before the routing service is called. In-map
+routing currently supports driving only.
 
 ### Suggesting a new place
 

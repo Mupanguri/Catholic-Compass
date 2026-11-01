@@ -466,9 +466,30 @@ function clearRoute() {
     }
 }
 
+function getLocationErrorMessage(error) {
+    if (!window.isSecureContext) {
+        return 'Location requires HTTPS (or localhost). Open the secure site, then try again.';
+    }
+
+    switch (error.code) {
+        case error.PERMISSION_DENIED:
+            return 'Location permission was denied. Allow location access for this site, then try again.';
+        case error.POSITION_UNAVAILABLE:
+            return 'Your device could not determine a location. Check GPS or network access, then try again.';
+        case error.TIMEOUT:
+            return 'Location lookup timed out. Check GPS or network access, then try again.';
+        default:
+            return 'Location is unavailable. Check browser permissions, then try again.';
+    }
+}
+
 function drawRouteOnMap(destLat, destLng, button, status) {
     if (!navigator.geolocation) {
         status.textContent = 'Your browser does not support location.';
+        return;
+    }
+    if (!window.isSecureContext) {
+        status.textContent = 'Location requires HTTPS (or localhost). Open the secure site, then try again.';
         return;
     }
 
@@ -514,10 +535,10 @@ function drawRouteOnMap(destLat, destLng, button, status) {
         }
     }, (error) => {
         console.warn('Geolocation unavailable:', error.message);
-        status.textContent = 'Location unavailable. Allow location access to draw a route.';
+        status.textContent = getLocationErrorMessage(error);
         button.disabled = false;
         button.textContent = 'Route on Map';
-    }, { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 });
+    }, { enableHighAccuracy: false, timeout: 15000, maximumAge: 60000 });
 }
 
 function openCorrectionForm(id) {
