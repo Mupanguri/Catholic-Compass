@@ -1,4 +1,4 @@
-use chrono::{DateTime, NaiveDateTime, Utc};
+use chrono::NaiveDateTime;
 use serde::{Deserialize, Serialize};
 use uuid::Uuid;
 
@@ -79,14 +79,6 @@ pub struct DioceseWithCounts {
 pub struct CategoryCount {
     pub category: String,
     pub count: i64,
-}
-
-#[derive(sqlx::FromRow, Serialize)]
-pub struct Deanery {
-    pub id: Uuid,
-    pub diocese_id: Uuid,
-    pub name: String,
-    pub created_at: NaiveDateTime,
 }
 
 #[derive(Deserialize)]
@@ -175,29 +167,4 @@ pub struct PaginatedInstitutions {
     pub total: i64,
     pub page: u32,
     pub page_size: u32,
-}
-
-#[derive(Serialize)]
-pub struct ApiResponse<T> {
-    pub ok: bool,
-    pub data: Option<T>,
-    pub error: Option<String>,
-}
-
-impl<T> ApiResponse<T> {
-    pub fn ok(data: T) -> Self {
-        Self {
-            ok: true,
-            data: Some(data),
-            error: None,
-        }
-    }
-
-    pub fn err(message: String) -> Self {
-        Self {
-            ok: false,
-            data: None,
-            error: Some(message),
-        }
-    }
 }

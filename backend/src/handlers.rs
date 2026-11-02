@@ -2,15 +2,15 @@ use axum::{
     extract::{Path, Query, State},
     http::{HeaderMap, StatusCode},
     response::Json,
-    routing::{get, post, put, delete},
+    routing::{delete, get, post, put},
     Router,
 };
-use chrono::{DateTime, NaiveDateTime, Utc};
+use chrono::{NaiveDateTime, Utc};
+use jsonwebtoken::{decode, encode, DecodingKey, EncodingKey, Header, Validation};
 use serde_json::{json, Value};
 use sqlx::Row;
 use std::sync::Arc;
 use uuid::Uuid;
-use jsonwebtoken::{decode, encode, DecodingKey, EncodingKey, Header, Validation};
 
 use crate::db::Pool;
 use crate::models::*;
@@ -35,8 +35,14 @@ pub fn routes() -> Router<AppState> {
         .route("/api/search", get(search_institutions))
         // Submissions
         .route("/api/admin/login", post(admin_login))
-        .route("/api/submissions/institution", post(create_institution_submission))
-        .route("/api/submissions/correction", post(create_correction_submission))
+        .route(
+            "/api/submissions/institution",
+            post(create_institution_submission),
+        )
+        .route(
+            "/api/submissions/correction",
+            post(create_correction_submission),
+        )
         .route(
             "/api/submissions/image/:institution_id",
             post(create_image_submission),
@@ -47,10 +53,7 @@ pub fn routes() -> Router<AppState> {
             "/api/admin/submissions/:id/approve",
             put(approve_submission),
         )
-        .route(
-            "/api/admin/submissions/:id/reject",
-            put(reject_submission),
-        )
+        .route("/api/admin/submissions/:id/reject", put(reject_submission))
         .route("/api/admin/institutions/:id", put(update_institution))
         .route(
             "/api/admin/institutions/:id/images",
@@ -81,23 +84,23 @@ async fn list_institutions(
     let mut conditions: Vec<String> = Vec::new();
     let mut param_count: i32 = 0;
 
-    if let Some(ref cat) = params.category {
+    if params.category.is_some() {
         param_count += 1;
         conditions.push(format!("category = ${}::institution_category", param_count));
     }
-    if let Some(did) = params.diocese_id {
+    if params.diocese_id.is_some() {
         param_count += 1;
         conditions.push(format!("diocese_id = ${}", param_count));
     }
-    if let Some(did) = params.deanery_id {
+    if params.deanery_id.is_some() {
         param_count += 1;
         conditions.push(format!("deanery_id = ${}", param_count));
     }
-    if let Some(v) = params.verified {
+    if params.verified.is_some() {
         param_count += 1;
         conditions.push(format!("verified = ${}", param_count));
     }
-    if let Some(ref s) = params.search {
+    if params.search.is_some() {
         param_count += 1;
         conditions.push(format!("name % ${}", param_count));
     }
@@ -110,38 +113,32 @@ async fn list_institutions(
     query.push_str(" ORDER BY name ASC");
     param_count += 1;
     query.push_str(&format!(" LIMIT ${}", param_count));
-    let limit_param = param_count;
     param_count += 1;
     query.push_str(&format!(" OFFSET ${}", param_count));
-    let offset_param = param_count;
 
     let mut qb = sqlx::query_as::<_, Institution>(&query);
 
-    let mut idx = 0;
     if let Some(ref cat) = params.category {
-        idx += 1;
         qb = qb.bind(cat);
     }
     if let Some(did) = params.diocese_id {
-        idx += 1;
         qb = qb.bind(did);
     }
     if let Some(did) = params.deanery_id {
-        idx += 1;
         qb = qb.bind(did);
     }
     if let Some(v) = params.verified {
-        idx += 1;
         qb = qb.bind(v);
     }
     if let Some(ref s) = params.search {
-        idx += 1;
         qb = qb.bind(s);
     }
     qb = qb.bind(page_size as i32).bind(offset as i32);
 
-    let institutions = qb.fetch_all(&state.pool).await
-        .map_err(|e| { tracing::error!("list institutions error: {:?}", e); StatusCode::INTERNAL_SERVER_ERROR })?;
+    let institutions = qb.fetch_all(&state.pool).await.map_err(|e| {
+        tracing::error!("list institutions error: {:?}", e);
+        StatusCode::INTERNAL_SERVER_ERROR
+    })?;
 
     // Count total
     let mut count_query = String::from("SELECT COUNT(*) FROM institutions");
@@ -150,28 +147,25 @@ async fn list_institutions(
         count_query.push_str(&conditions.join(" AND "));
     }
     let mut cq = sqlx::query(&count_query);
-    idx = 0;
     if let Some(ref cat) = params.category {
-        idx += 1;
         cq = cq.bind(cat);
     }
     if let Some(did) = params.diocese_id {
-        idx += 1;
         cq = cq.bind(did);
     }
     if let Some(did) = params.deanery_id {
-        idx += 1;
         cq = cq.bind(did);
     }
     if let Some(v) = params.verified {
-        idx += 1;
         cq = cq.bind(v);
     }
     if let Some(ref s) = params.search {
-        idx += 1;
         cq = cq.bind(s);
     }
-    let row = cq.fetch_one(&state.pool).await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let row = cq
+        .fetch_one(&state.pool)
+        .await
+        .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
     let total: i64 = row.try_get::<i64, _>(0).unwrap_or(0);
 
     Ok(Json(json!(PaginatedInstitutions {
@@ -217,10 +211,14 @@ async fn get_institution(
             s3_key: r.try_get::<String, _>("s3_key").unwrap_or_default(),
             url: r.try_get::<String, _>("url").unwrap_or_default(),
             caption: r.try_get::<Option<String>, _>("caption").unwrap_or(None),
-            submitted_by: r.try_get::<Option<String>, _>("submitted_by").unwrap_or(None),
+            submitted_by: r
+                .try_get::<Option<String>, _>("submitted_by")
+                .unwrap_or(None),
             is_cover: r.try_get::<bool, _>("is_cover").unwrap_or(false),
             approved: r.try_get::<bool, _>("approved").unwrap_or(false),
-            uploaded_at: r.try_get::<NaiveDateTime, _>("uploaded_at").unwrap_or(Utc::now().naive_utc()),
+            uploaded_at: r
+                .try_get::<NaiveDateTime, _>("uploaded_at")
+                .unwrap_or(Utc::now().naive_utc()),
         })
         .collect();
 
@@ -237,22 +235,34 @@ async fn nearby_institutions(
     Query(params): Query<NearbyQuery>,
 ) -> Result<Json<Value>, StatusCode> {
     let radius_m = params.radius_km.unwrap_or(10.0) * 1000.0;
+    let category_condition = params
+        .category
+        .as_ref()
+        .map(|_| " AND category = $4::institution_category")
+        .unwrap_or("");
 
-    let rows = sqlx::query(
+    let query = format!(
         "SELECT id, name, category::text as category, school_level::text as school_level, diocese_id, deanery_id, parent_id,
                  ST_AsText(location) as location, address_notes, contact_phone, contact_email,
                  website, priest_in_charge, cover_image_url, verified, created_at, updated_at,
                  ST_Distance(location, ST_SetSRID(ST_MakePoint($2, $3), 4326)::geography) as distance_meters
           FROM institutions
           WHERE location IS NOT NULL
-            AND ST_DWithin(location, ST_SetSRID(ST_MakePoint($2, $3), 4326)::geography, $1)",
-    )
-    .bind(radius_m as f64)
-    .bind(params.lng)
-    .bind(params.lat)
-    .fetch_all(&state.pool)
-    .await
-    .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+            AND ST_DWithin(location, ST_SetSRID(ST_MakePoint($2, $3), 4326)::geography, $1){}",
+        category_condition
+    );
+
+    let mut nearby_query = sqlx::query(&query)
+        .bind(radius_m)
+        .bind(params.lng)
+        .bind(params.lat);
+    if let Some(category) = &params.category {
+        nearby_query = nearby_query.bind(category);
+    }
+    let rows = nearby_query
+        .fetch_all(&state.pool)
+        .await
+        .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
 
     let mut results: Vec<Value> = Vec::new();
     for r in rows {
@@ -280,8 +290,14 @@ async fn nearby_institutions(
     }
 
     results.sort_by(|a, b| {
-        let da = a.get("distance_meters").and_then(|v| v.as_f64()).unwrap_or(f64::INFINITY);
-        let db = b.get("distance_meters").and_then(|v| v.as_f64()).unwrap_or(f64::INFINITY);
+        let da = a
+            .get("distance_meters")
+            .and_then(|v| v.as_f64())
+            .unwrap_or(f64::INFINITY);
+        let db = b
+            .get("distance_meters")
+            .and_then(|v| v.as_f64())
+            .unwrap_or(f64::INFINITY);
         da.partial_cmp(&db).unwrap_or(std::cmp::Ordering::Equal)
     });
 
@@ -290,9 +306,7 @@ async fn nearby_institutions(
 
 // ---------- Public: list dioceses ----------
 
-async fn list_dioceses(
-    State(state): State<AppState>,
-) -> Result<Json<Value>, StatusCode> {
+async fn list_dioceses(State(state): State<AppState>) -> Result<Json<Value>, StatusCode> {
     let dioceses = sqlx::query_as::<_, Diocese>(
         "SELECT id, name, bishop_name, website, created_at FROM dioceses ORDER BY name ASC",
     )
@@ -316,7 +330,10 @@ async fn list_dioceses(
             let cat: String = cr.try_get("category").unwrap_or_default();
             let cnt: i64 = cr.try_get::<i64, _>("count").unwrap_or(0);
             total += cnt;
-            category_counts.push(CategoryCount { category: cat, count: cnt });
+            category_counts.push(CategoryCount {
+                category: cat,
+                count: cnt,
+            });
         }
 
         result.push(DioceseWithCounts {
@@ -406,14 +423,6 @@ async fn create_institution_submission(
         return Err(StatusCode::BAD_REQUEST);
     }
 
-    let loc = match (payload.proposed_lat, payload.proposed_lng) {
-        (Some(lat), Some(lng)) => Some(format!(
-            "ST_SetSRID(ST_MakePoint({}, {}), 4326)::geography",
-            lng, lat
-        )),
-        _ => None,
-    };
-
     sqlx::query(
         "INSERT INTO community_submissions
             (submission_type, status, submitter_name, submitter_email, submitter_phone,
@@ -467,13 +476,12 @@ async fn create_correction_submission(
         return Err(StatusCode::BAD_REQUEST);
     }
 
-    let exists = sqlx::query_scalar::<_, bool>(
-        "SELECT EXISTS(SELECT 1 FROM institutions WHERE id = $1)",
-    )
-    .bind(payload.institution_id)
-    .fetch_one(&state.pool)
-    .await
-    .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let exists =
+        sqlx::query_scalar::<_, bool>("SELECT EXISTS(SELECT 1 FROM institutions WHERE id = $1)")
+            .bind(payload.institution_id)
+            .fetch_one(&state.pool)
+            .await
+            .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
     if !exists {
         return Err(StatusCode::NOT_FOUND);
     }
@@ -495,16 +503,26 @@ async fn create_correction_submission(
     .await
     .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
 
-    Ok(Json(json!({"ok": true, "message": "Correction submitted for review."})))
+    Ok(Json(
+        json!({"ok": true, "message": "Correction submitted for review."}),
+    ))
 }
 
 fn valid_category(category: &str) -> bool {
-    matches!(category, "parish" | "outstation" | "mission" | "school" | "orphanage" | "shrine" | "office")
+    matches!(
+        category,
+        "parish" | "outstation" | "mission" | "school" | "orphanage" | "shrine" | "office"
+    )
 }
 
 fn valid_coordinates(lat: Option<f64>, lng: Option<f64>) -> bool {
     match (lat, lng) {
-        (Some(lat), Some(lng)) => lat.is_finite() && lng.is_finite() && (-90.0..=90.0).contains(&lat) && (-180.0..=180.0).contains(&lng),
+        (Some(lat), Some(lng)) => {
+            lat.is_finite()
+                && lng.is_finite()
+                && (-90.0..=90.0).contains(&lat)
+                && (-180.0..=180.0).contains(&lng)
+        }
         (None, None) => true,
         _ => false,
     }
@@ -514,8 +532,10 @@ async fn admin_login(
     State(state): State<AppState>,
     Json(payload): Json<AdminLogin>,
 ) -> Result<Json<Value>, StatusCode> {
-    let username = std::env::var("ADMIN_USERNAME").map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
-    let password = std::env::var("ADMIN_PASSWORD").map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let username =
+        std::env::var("ADMIN_USERNAME").map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let password =
+        std::env::var("ADMIN_PASSWORD").map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
     if payload.username != username || payload.password != password {
         return Err(StatusCode::UNAUTHORIZED);
     }
@@ -534,13 +554,19 @@ async fn admin_login(
 }
 
 fn require_admin(headers: &HeaderMap, state: &AppState) -> Result<String, StatusCode> {
-    let value = headers.get("authorization").and_then(|v| v.to_str().ok()).unwrap_or_default();
-    let token = value.strip_prefix("Bearer ").ok_or(StatusCode::UNAUTHORIZED)?;
+    let value = headers
+        .get("authorization")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or_default();
+    let token = value
+        .strip_prefix("Bearer ")
+        .ok_or(StatusCode::UNAUTHORIZED)?;
     let token_data = decode::<Claims>(
         token,
         &DecodingKey::from_secret(state.jwt_secret.as_bytes()),
         &Validation::default(),
-    ).map_err(|_| StatusCode::UNAUTHORIZED)?;
+    )
+    .map_err(|_| StatusCode::UNAUTHORIZED)?;
     Ok(token_data.claims.sub)
 }
 
@@ -595,7 +621,11 @@ async fn approve_submission(
     headers: HeaderMap,
 ) -> Result<Json<Value>, StatusCode> {
     let reviewer = require_admin(&headers, &state)?;
-    let mut tx = state.pool.begin().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let mut tx = state
+        .pool
+        .begin()
+        .await
+        .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
     // Get the submission
     let sub = sqlx::query(
         "SELECT submission_type, status, proposed_name, proposed_category, proposed_diocese,
@@ -618,13 +648,27 @@ async fn approve_submission(
 
     if stype == "new_institution" {
         let name: String = sub.try_get("proposed_name").unwrap_or_default();
-        let category: String = sub.try_get("proposed_category").unwrap_or_else(|_| "parish".to_string());
-        let diocese_id: Option<Uuid> = sub.try_get("proposed_diocese").ok().and_then(|s: Option<String>| s.and_then(|v| Uuid::parse_str(&v).ok()));
+        let category: String = sub
+            .try_get("proposed_category")
+            .unwrap_or_else(|_| "parish".to_string());
+        let diocese_id: Option<Uuid> = sub
+            .try_get("proposed_diocese")
+            .ok()
+            .and_then(|s: Option<String>| s.and_then(|v| Uuid::parse_str(&v).ok()));
         let lat: Option<f64> = sub.try_get::<Option<f64>, _>("proposed_lat").ok().flatten();
         let lng: Option<f64> = sub.try_get::<Option<f64>, _>("proposed_lng").ok().flatten();
-        let address_notes: Option<String> = sub.try_get::<Option<String>, _>("proposed_address_notes").ok().flatten();
-        let phone: Option<String> = sub.try_get::<Option<String>, _>("proposed_phone").ok().flatten();
-        let priest: Option<String> = sub.try_get::<Option<String>, _>("proposed_priest").ok().flatten();
+        let address_notes: Option<String> = sub
+            .try_get::<Option<String>, _>("proposed_address_notes")
+            .ok()
+            .flatten();
+        let phone: Option<String> = sub
+            .try_get::<Option<String>, _>("proposed_phone")
+            .ok()
+            .flatten();
+        let priest: Option<String> = sub
+            .try_get::<Option<String>, _>("proposed_priest")
+            .ok()
+            .flatten();
 
         let new_id = Uuid::new_v4();
 
@@ -658,14 +702,30 @@ async fn approve_submission(
         .await
         .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
     } else if stype == "correction" {
-        let institution_id: Uuid = sub.try_get("institution_id").map_err(|_| StatusCode::BAD_REQUEST)?;
-        let field: String = sub.try_get("correction_field").map_err(|_| StatusCode::BAD_REQUEST)?;
-        let value: String = sub.try_get("correction_value").map_err(|_| StatusCode::BAD_REQUEST)?;
-        let allowed = ["name", "address_notes", "contact_phone", "contact_email", "website", "priest_in_charge"];
+        let institution_id: Uuid = sub
+            .try_get("institution_id")
+            .map_err(|_| StatusCode::BAD_REQUEST)?;
+        let field: String = sub
+            .try_get("correction_field")
+            .map_err(|_| StatusCode::BAD_REQUEST)?;
+        let value: String = sub
+            .try_get("correction_value")
+            .map_err(|_| StatusCode::BAD_REQUEST)?;
+        let allowed = [
+            "name",
+            "address_notes",
+            "contact_phone",
+            "contact_email",
+            "website",
+            "priest_in_charge",
+        ];
         if !allowed.contains(&field.as_str()) {
             return Err(StatusCode::BAD_REQUEST);
         }
-        let query = format!("UPDATE institutions SET {} = $1, updated_at = NOW() WHERE id = $2", field);
+        let query = format!(
+            "UPDATE institutions SET {} = $1, updated_at = NOW() WHERE id = $2",
+            field
+        );
         sqlx::query(&query)
             .bind(value)
             .bind(institution_id)
@@ -685,7 +745,9 @@ async fn approve_submission(
     if updated.rows_affected() != 1 {
         return Err(StatusCode::CONFLICT);
     }
-    tx.commit().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    tx.commit()
+        .await
+        .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
 
     Ok(Json(json!({
         "ok": true,
@@ -702,7 +764,10 @@ async fn reject_submission(
     axum::extract::Json(notes): Json<Value>,
 ) -> Result<Json<Value>, StatusCode> {
     let reviewer = require_admin(&headers, &state)?;
-    let admin_notes = notes.get("admin_notes").and_then(|v| v.as_str()).unwrap_or("");
+    let admin_notes = notes
+        .get("admin_notes")
+        .and_then(|v| v.as_str())
+        .unwrap_or("");
     if admin_notes.trim().is_empty() {
         return Err(StatusCode::BAD_REQUEST);
     }
@@ -774,7 +839,7 @@ async fn update_institution(
     }
 
     param_count += 1;
-    sets.push(format!("updated_at = NOW()"));
+    sets.push("updated_at = NOW()".to_string());
     let query = format!(
         "UPDATE institutions SET {} WHERE id = ${}",
         sets.join(", "),
@@ -783,21 +848,47 @@ async fn update_institution(
 
     let mut qb = sqlx::query(&query);
     // Re-bind in order
-    if let Some(v) = &payload.name { qb = qb.bind(v); }
-    if let Some(v) = &payload.category { qb = qb.bind(v); }
-    if let Some(v) = &payload.school_level { qb = qb.bind(v); }
-    if let Some(v) = payload.diocese_id { qb = qb.bind(v); }
-    if let Some(v) = payload.deanery_id { qb = qb.bind(v); }
-    if let Some(v) = payload.parent_id { qb = qb.bind(v); }
-    if let Some(v) = &payload.address_notes { qb = qb.bind(v); }
-    if let Some(v) = &payload.contact_phone { qb = qb.bind(v); }
-    if let Some(v) = &payload.contact_email { qb = qb.bind(v); }
-    if let Some(v) = &payload.website { qb = qb.bind(v); }
-    if let Some(v) = &payload.priest_in_charge { qb = qb.bind(v); }
-    if let Some(v) = payload.verified { qb = qb.bind(v); }
+    if let Some(v) = &payload.name {
+        qb = qb.bind(v);
+    }
+    if let Some(v) = &payload.category {
+        qb = qb.bind(v);
+    }
+    if let Some(v) = &payload.school_level {
+        qb = qb.bind(v);
+    }
+    if let Some(v) = payload.diocese_id {
+        qb = qb.bind(v);
+    }
+    if let Some(v) = payload.deanery_id {
+        qb = qb.bind(v);
+    }
+    if let Some(v) = payload.parent_id {
+        qb = qb.bind(v);
+    }
+    if let Some(v) = &payload.address_notes {
+        qb = qb.bind(v);
+    }
+    if let Some(v) = &payload.contact_phone {
+        qb = qb.bind(v);
+    }
+    if let Some(v) = &payload.contact_email {
+        qb = qb.bind(v);
+    }
+    if let Some(v) = &payload.website {
+        qb = qb.bind(v);
+    }
+    if let Some(v) = &payload.priest_in_charge {
+        qb = qb.bind(v);
+    }
+    if let Some(v) = payload.verified {
+        qb = qb.bind(v);
+    }
     qb = qb.bind(id);
 
-    qb.execute(&state.pool).await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    qb.execute(&state.pool)
+        .await
+        .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
 
     Ok(Json(json!({
         "ok": true,

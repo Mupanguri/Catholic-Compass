@@ -1,7 +1,4 @@
-use axum::{
-    routing::get,
-    Router,
-};
+use axum::{routing::get, Router};
 use dotenvy::dotenv;
 use std::net::SocketAddr;
 use std::sync::Arc;
@@ -27,19 +24,14 @@ async fn main() {
         .with(tracing_subscriber::fmt::layer())
         .init();
 
-    let database_url = std::env::var("DATABASE_URL")
-        .expect("DATABASE_URL must be set in .env");
-    let jwt_secret = std::env::var("JWT_SECRET")
-        .expect("JWT_SECRET must be set in .env");
+    let database_url = std::env::var("DATABASE_URL").expect("DATABASE_URL must be set in .env");
+    let jwt_secret = std::env::var("JWT_SECRET").expect("JWT_SECRET must be set in .env");
 
     let pool = connect(&database_url)
         .await
         .expect("Failed to connect to database");
 
-    let state = Arc::new(AppStateInner {
-        pool,
-        jwt_secret,
-    });
+    let state = Arc::new(AppStateInner { pool, jwt_secret });
 
     let app = Router::new()
         .route("/health", get(|| async { "OK" }))

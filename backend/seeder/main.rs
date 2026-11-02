@@ -36,13 +36,11 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             Some(id) if id != Uuid::nil() => id,
             _ => {
                 let new_id = Uuid::new_v4();
-                sqlx::query(
-                    "INSERT INTO dioceses (id, name, created_at) VALUES ($1, $2, NOW())",
-                )
-                .bind(new_id)
-                .bind(name)
-                .execute(&pool)
-                .await?;
+                sqlx::query("INSERT INTO dioceses (id, name, created_at) VALUES ($1, $2, NOW())")
+                    .bind(new_id)
+                    .bind(name)
+                    .execute(&pool)
+                    .await?;
                 new_id
             }
         };
@@ -115,14 +113,13 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                 if let Some(id) = deanery_cache.get(&cache_key) {
                     Some(*id)
                 } else {
-                    let existing: Option<Uuid> = sqlx::query(
-                        "SELECT id FROM deaneries WHERE diocese_id = $1 AND name = $2",
-                    )
-                    .bind(diocese_id)
-                    .bind(deanery_name)
-                    .fetch_optional(&pool)
-                    .await?
-                    .map(|r| r.try_get::<Uuid, _>("id").unwrap_or(Uuid::nil()));
+                    let existing: Option<Uuid> =
+                        sqlx::query("SELECT id FROM deaneries WHERE diocese_id = $1 AND name = $2")
+                            .bind(diocese_id)
+                            .bind(deanery_name)
+                            .fetch_optional(&pool)
+                            .await?
+                            .map(|r| r.try_get::<Uuid, _>("id").unwrap_or(Uuid::nil()));
 
                     match existing {
                         Some(id) => {
@@ -186,6 +183,9 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         total_skipped += skipped;
     }
 
-    println!("\nTotal inserted: {}, Total skipped: {}", total_inserted, total_skipped);
+    println!(
+        "\nTotal inserted: {}, Total skipped: {}",
+        total_inserted, total_skipped
+    );
     Ok(())
 }
